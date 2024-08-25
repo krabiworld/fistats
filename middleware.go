@@ -6,8 +6,10 @@ import (
 )
 
 func (s *Stats) Middleware(c *fiber.Ctx) error {
+	path := utils.CopyString(c.Path())
+
 	go func() {
-		err := s.storage.Increment(utils.CopyString(c.Path()))
+		err := s.storage.Increment(path)
 		if err != nil {
 			panic(err)
 		}
