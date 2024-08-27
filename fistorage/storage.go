@@ -1,4 +1,4 @@
-package storage
+package fistorage
 
 type Storage interface {
 	Increment(key string) error
