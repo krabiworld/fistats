@@ -8,19 +8,15 @@ Small middleware to find unused routes in app.
 package main
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/krabiworld/fistats"
-	"github.com/krabiworld/fistats/fistorage"
+    "github.com/gofiber/fiber/v2"
+    "github.com/krabiworld/fistats"
+    "github.com/krabiworld/fistats/fistorage"
 )
 
 func main() {
-	s := stats.New(storage.NewMemory())
-
-	app := fiber.New()
-	app.Use(s.Middleware)
-
-	app.Get("/stats", s.Route)
-
-	s.Key() // Key to access to /stats route
+    var key string
+	
+    app := fiber.New()
+    app.Use(fistats.New(&key, fistats.Config{Storage: fistorage.NewMemory()}))
 }
 ```
