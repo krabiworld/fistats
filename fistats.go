@@ -5,7 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2/utils"
 	"github.com/google/uuid"
 	"sort"
-	"unsafe"
 )
 
 type Route struct {
@@ -18,8 +17,7 @@ func New(key *string, config ...Config) fiber.Handler {
 	cfg := configDefault(config...)
 
 	id := "/" + uuid.NewString()
-	idData := unsafe.StringData(id)
-	*key = unsafe.String(idData, len(id))
+	*key = id
 
 	return func(c *fiber.Ctx) error {
 		path := utils.CopyString(c.Path())
