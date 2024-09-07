@@ -34,7 +34,7 @@ func (m *Memory) GetAll() (map[string]uint64, error) {
 	return cp, nil
 }
 
-func (m *Memory) DeleteAll() error {
+func (m *Memory) Clear() error {
 	m.Lock()
 	m.m = make(map[string]uint64)
 	m.Unlock()

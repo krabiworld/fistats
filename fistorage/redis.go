@@ -51,7 +51,7 @@ func (r *Redis) GetAll() (map[string]uint64, error) {
 	return result, nil
 }
 
-func (r *Redis) DeleteAll() error {
+func (r *Redis) Clear() error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
